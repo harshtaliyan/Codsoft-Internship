@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureTech University - BTech Programs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .glow {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid #3b82f6;
+            border-radius: 15px;
+        }
+        
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            margin-left: -3px;
+            background-color: #3b82f6;
+            border-radius: 100%;
+            animation: scrollDown 2s infinite;
+        }
+        
+        @keyframes scrollDown {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #3b82f6;
+            border-radius: 50%;
+            left: -10px;
+            top: 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: #334155;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-opacity-90 backdrop-blur-md bg-gray-900 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold gradient-text">FutureTech</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-800 transition">Home</a>
+                        <a href="#courses" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Courses</a>
+                        <a href="#fees" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Fees</a>
+                        <a href="#careers" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Careers</a>
+                        <a href="#contact" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="mobile-menu-button p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden fixed inset-0 z-40 bg-gray-900 bg-opacity-90 backdrop-blur-md pt-16">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-800 transition">Home</a>
+            <a href="#courses" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Courses</a>
+            <a href="#fees" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Fees</a>
+            <a href="#careers" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Careers</a>
+            <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-indigo-900/30"></div>
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-20"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in">
+                    <span class="gradient-text">BTech</span> Programs
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto fade-in" style="transition-delay: 0.2s;">
+                    Shape your future with cutting-edge engineering education and industry-aligned curriculum
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 fade-in" style="transition-delay: 0.4s;">
+                    <a href="#courses" class="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full text-white font-medium hover:from-blue-700 hover:to-indigo-700 transition duration-300 transform hover:scale-105">
+                        Explore Courses
+                    </a>
+                    <a href="#contact" class="px-8 py-3 border border-blue-500 rounded-full text-blue-400 font-medium hover:bg-blue-900/30 transition duration-300 transform hover:scale-105">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800/50 backdrop-blur-md rounded-xl p-6 card-hover fade-in" style="transition-delay: 0.6s;">
+                    <div class="text-blue-400 text-3xl mb-4">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Industry-Ready Curriculum</h3>
+                    <p class="text-gray-300">Designed with input from tech leaders to ensure you graduate with relevant, in-demand skills.</p>
+                </div>
+                
+                <div class="bg-gray-800/50 backdrop-blur-md rounded-xl p-6 card-hover fade-in" style="transition-delay: 0.8s;">
+                    <div class="text-indigo-400 text-3xl mb-4">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">100% Placement Assistance</h3>
+                    <p class="text-gray-300">Our dedicated placement cell connects you with top tech companies worldwide.</p>
+                </div>
+                
+                <div class="bg-gray-800/50 backdrop-blur-md rounded-xl p-6 card-hover fade-in" style="transition-delay: 1s;">
+                    <div class="text-purple-400 text-3xl mb-4">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Advanced Research Labs</h3>
+                    <p class="text-gray-300">State-of-the-art facilities for hands-on learning and innovation.</p>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator fade-in" style="transition-delay: 1.2s;"></div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-20 bg-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80')] bg-cover bg-center opacity-10"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 fade-in">
+                    Our <span class="gradient-text">BTech Programs</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto fade-in" style="transition-delay: 0.2s;">
+                    Choose from our diverse range of engineering disciplines, each designed to prepare you for the future of technology
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800/70 backdrop-blur-md rounded-xl overflow-hidden card-hover fade-in">
+                    <div class="h-48 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center">
+                        <i class="fas fa-laptop-code text-6xl text-white opacity-90"></i>
+                    </div>
+                    <div classp-6">
+                        <h3 class="text-xl font-semibold mb-2">Computer Science & Engineering</h3>
+                        <p class="text-gray-300 mb-4">Master algorithms, AI, cloud computing, and software development with our industry-leading program.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">AI/ML</span>
+                            <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">Cybersecurity</span>
+                            <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">Blockchain</span>
+                        </div>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800/70 backdrop-blur-md rounded-xl overflow-hidden card-hover fade-in" style="transition-delay: 0.2s;">
+                    <div class="h-48 bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
+                        <i class="fas fa-microchip text-6xl text-white opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Electronics & Communication</h3>
+                        <p class="text-gray-300 mb-4">Explore VLSI, embedded systems, IoT, and telecommunications in this comprehensive program.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">IoT</span>
+                            <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">5G Networks</span>
+                            <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">Robotics</span>
+                        </div>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800/70 backdrop-blur-md rounded-xl overflow-hidden card-hover fade-in" style="transition-delay: 0.4s;">
+                    <div class="h-48 bg-gradient-to-r from-green-600 to-teal-600 flex items-center justify-center">
+                        <i class="fas fa-bolt text-6xl text-white opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Electrical Engineering</h3>
+                        <p class="text-gray-300 mb-4">Specialize in power systems, renewable energy, smart grids, and electrical machines.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-green-900/50 text-green-300 rounded-full text-sm">Renewable Energy</span>
+                            <span class="px-3 py-1 bg-green-900/50 text-green-300 rounded-full text-sm">Smart Grids</span>
+                            <span class="px-3 py-1 bg-green-900/50 text-green-300 rounded-full text-sm">EV Technology</span>
+                        </div>
+                        <a href="#" class="text-green-400 hover:text-green-300 font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800/70 backdrop-blur-md rounded-xl overflow-hidden card-hover fade-in" style="transition-delay: 0.6s;">
+                    <div class="h-48 bg-gradient-to-r from-red-600 to-orange-600 flex items-center justify-center">
+                        <i class="fas fa-robot text-6xl text-white opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Mechanical Engineering</h3>
+                        <p class="text-gray-300 mb-4">Learn about robotics, automation, thermal systems, and advanced manufacturing techniques.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-red-900/50 text-red-300 rounded-full text-sm">Robotics</span>
+                            <span class="px-3 py-1 bg-red-900/50 text-red-300 rounded-full text-sm">3D Printing</span>
+                            <span class="px-3 py-1 bg-red-900/50 text-red-300 rounded-full text-sm">CAD/CAM</span>
+                        </div>
+                        <a href="#" class="text-red-400 hover:text-red-300 font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800/70 backdrop-blur-md rounded-xl overflow-hidden card-hover fade-in" style="transition-delay: 0.8s;">
+                    <div class="h-48 bg-gradient-to-r from-yellow-600 to-amber-600 flex items-center justify-center">
+                        <i class="fas fa-atom text-6xl text-white opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Chemical Engineering</h3>
+                        <p class="text-gray-300 mb-4">Study process engineering, nanotechnology, biotechnology, and sustainable chemical processes.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-yellow-900/50 text-yellow-300 rounded-full text-sm">Nanotech</span>
+                            <span class="px-3 py-1 bg-yellow-900/50 text-yellow-300 rounded-full text-sm">Biotech</span>
+                            <span class="px-3 py-1 bg-yellow-900/50 text-yellow-300 rounded-full text-sm">Green Chem</span>
+                        </div>
+                        <a href="#" class="text-yellow-400 hover:text-yellow-300 font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800/70 backdrop-blur-md rounded-xl overflow-hidden card-hover fade-in" style="transition-delay: 1s;">
+                    <div class="h-48 bg-gradient-to-r from-cyan-600 to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-city text-6xl text-white opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Civil Engineering</h3>
+                        <p class="text-gray-300 mb-4">Focus on smart infrastructure, sustainable construction, transportation systems, and urban planning.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-cyan-900/50 text-cyan-300 rounded-full text-sm">Smart Cities</span>
+                            <span class="px-3 py-1 bg-cyan-900/50 text-cyan-300 rounded-full text-sm">GIS</span>
+                            <span class="px-3 py-1 bg-cyan-900/50 text-cyan-300 rounded-full text-sm">BIM</span>
+                        </div>
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fees Structure Section -->
+    <section id="fees" class="py-20 bg-gray-800 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 fade-in">
+                    <span class="gradient-text">Fee Structure</span> & Financial Aid
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto fade-in" style="transition-delay: 0.2s;">
+                    Affordable education with flexible payment options and generous scholarship opportunities
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-700/50 backdrop-blur-md rounded-xl p-8 card-hover fade-in">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-blue-400 mb-2">Domestic Students</h3>
+                        <p class="text-gray-300">Indian Nationals</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-5xl font-bold">₹1,20,000</span>
+                        <span class="text-gray-300 block">per annum</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Tuition Fee: ₹90,000</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Lab Fee: ₹15,000</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Library Fee: ₹5,000</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Miscellaneous: ₹10,000</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium text-center transition">
+                        Apply Now
+                    </a>
+                </div>
+                
+                <div class="bg-gray-700/50 backdrop-blur-md rounded-xl p-8 card-hover fade-in" style="transition-delay: 0.2s;">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-purple-400 mb-2">International Students</h3>
+                        <p class="text-gray-300">Foreign Nationals</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-5xl font-bold">$6,000</span>
+                        <span class="text-gray-300 block">per annum</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Tuition Fee: $4,500</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Lab Fee: $750</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Library Fee: $250</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Miscellaneous: $500</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block w-full py-3 px-6 bg-purple-600 hover:bg-purple-700 rounded-lg text-white font-medium text-center transition">
+                        Apply Now
+                    </a>
+                </div>
+                
+                <div class="bg-gray-700/50 backdrop-blur-md rounded-xl p-8 card-hover fade-in" style="transition-delay: 0.4s;">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-green-400 mb-2">Scholarships</h3>
+                        <p class="text-gray-300">Financial Assistance</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-5xl font-bold">Up to 100%</span>
+                        <span class="text-gray-300 block">fee waiver</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Merit-based (JEE rankers)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Sports & Cultural</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Economically Weaker Sections</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Research Fellowships</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span class="text-gray-300">Corporate Sponsored</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block w-full py-3 px-6 bg-green-600 hover:bg-green-700 rounded-lg text-white font-medium text-center transition">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-gray-700/50 backdrop-blur-md rounded-xl p-8 fade-in" style="transition-delay: 0.6s;">
+                <h3 class="text-2xl font-bold text-center mb-6">Payment Options</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center p-4 bg-gray-600/50 rounded-lg">
+                        <div class="text-blue-400 text-3xl mr-4">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">One-Time Payment</h4>
+                            <p class="text-sm text-gray-300">5% discount on total fees</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-gray-600/50 rounded-lg">
+                        <div class="text-purple-400 text-3xl mr-4">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Semester-wise</h4>
+                            <p class="text-sm text-gray-300">Pay in 8 installments</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-gray-600/50 rounded-lg">
+                        <div class="text-green-400 text-3xl mr-4">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Education Loan</h4>
+                            <p class="text-sm text-gray-300">Tie-ups with leading banks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Opportunities Section -->
+    <section id="careers" class="py-20 bg-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 fade-in">
+                    <span class="gradient-text">Career Opportunities</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto fade-in" style="transition-delay: 0.2s;">
+                    Our graduates are shaping the future at top companies and research institutions worldwide
+                </p>
+            </div>
+            
+            <div class="mb-16 fade-in" style="transition-delay: 0.4s;">
+                <h3 class="text-2xl font-semibold mb-6 text-center">Placement Statistics (2023)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6 text-center card-hover">
+                        <div class="text-4xl font-bold text-blue-400 mb-2">95%</div>
+                        <div class="text-gray-300">Placement Rate</div>
+                    </div>
+                    <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6 text-center card-hover">
+                        <div class="text-4xl font-bold text-purple-400 mb-2">₹18 LPA</div>
+                        <div class="text-gray-300">Average Package</div>
+                    </div>
+                    <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6 text-center card-hover">
+                        <div class="text-4xl font-bold text-green-400 mb-2">₹42 LPA</div>
+                        <div class="text-gray-300">Highest Package</div>
+                    </div>
+                    <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6 text-center card-hover">
+                        <div class="text-4xl font-bold text-yellow-400 mb-2">120+</div>
+                        <div class="text-gray-300">Recruiting Companies</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-16 fade-in" style="transition-delay: 0.6s;">
+                <h3 class="text-2xl font-semibold mb-6 text-center">Top Recruiters</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+                    <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6 flex items-center justify-center card-hover">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="h-8 opacity-80 hover:opacity-100 transition">
+                    </div>
+                    <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6 flex items-center justify-center card-hover">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Google-logo.svg" alt="Google" class="h-8 opacity-80 hover:opacity-100 transition">
+                    </div>
+                    <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6 flex items-center justify-center card-hover">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" class="h-8 opacity-80 hover:opacity-100 transition">
+                    </div>
+                    <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6 flex items-center justify-center card-hover">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="h-8 opacity-80 hover:opacity-100 transition">
+                    </div>
+                    <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6 flex items-center justify-center card-hover">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Tata_Consultancy_Services_Logo.svg" alt="TCS" class="h-8 opacity-80 hover:opacity-100 transition">
+                    </div>
+                    <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6 flex items-center justify-center card-hover">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Infosys_logo.svg" alt="Infosys" class="h-8 opacity-80 hover:opacity-100 transition">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fade-in" style="transition-delay: 0.8s;">
+                <h3 class="text-2xl font-semibold mb-6 text-center">Career Paths</h3>
+                <div class="relative timeline pl-8">
+                    <div class="mb-12 timeline-item relative">
+                        <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6">
+                            <h4 class="text-xl font-semibold text-blue-400 mb-2">Software Engineer</h4>
+                            <p class="text-gray-300 mb-3">Develop cutting-edge applications and systems at tech giants or innovative startups.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">₹8-25 LPA</span>
+                                <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">Full-time</span>
+                                <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">Remote Options</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-12 timeline-item relative">
+                        <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6">
+                            <h4 class="text-xl font-semibold text-purple-400 mb-2">Data Scientist</h4>
+                            <p class="text-gray-300 mb-3">Work with big data, machine learning models, and AI algorithms to drive business decisions.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">₹10-30 LPA</span>
+                                <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">Research</span>
+                                <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">Hybrid</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-12 timeline-item relative">
+                        <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6">
+                            <h4 class="text-xl font-semibold text-green-400 mb-2">Product Manager</h4>
+                            <p class="text-gray-300 mb-3">Lead cross-functional teams to build products that millions of users love.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-900/50 text-green-300 rounded-full text-sm">₹15-35 LPA</span>
+                                <span class="px-3 py-1 bg-green-900/50 text-green-300 rounded-full text-sm">Leadership</span>
+                                <span class="px-3 py-1 bg-green-900/50 text-green-300 rounded-full text-sm">On-site</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-12 timeline-item relative">
+                        <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6">
+                            <h4 class="text-xl font-semibold text-yellow-400 mb-2">Research Scientist</h4>
+                            <p class="text-gray-300 mb-3">Push the boundaries of knowledge in academia or industrial research labs.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-yellow-900/50 text-yellow-300 rounded-full text-sm">₹12-28 LPA</span>
+                                <span class="px-3 py-1 bg-yellow-900/50 text-yellow-300 rounded-full text-sm">PhD Track</span>
+                                <span class="px-3 py-1 bg-yellow-900/50 text-yellow-300 rounded-full text-sm">Global</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item relative">
+                        <div class="bg-gray-800/70 backdrop-blur-md rounded-xl p-6">
+                            <h4 class="text-xl font-semibold text-red-400 mb-2">Entrepreneur</h4>
+                            <p class="text-gray-300 mb-3">Launch your own startup with our incubation support and alumni network.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-red-900/50 text-red-300 rounded-full text-sm">Unlimited</span>
+                                <span class="px-3 py-1 bg-red-900/50 text-red-300 rounded-full text-sm">Founder</span>
+                                <span class="px-3 py-1 bg-red-900/50 text-red-300 rounded-full text-sm">Venture Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-800 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 fade-in">
+                    <span class="gradient-text">Get In Touch</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto fade-in" style="transition-delay: 0.2s;">
+                    Have questions about our BTech programs? Our admissions team is here to help.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="fade-in" style="transition-delay: 0.4s;">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-300 mb-1">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition">
+                        </div>
+                        <div>
+                            <label for="course" class="block text-sm font-medium text-gray-300 mb-1">Course Interested In</label>
+                            <select id="course" class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition">
+                                <option>Computer Science & Engineering</option>
+                                <option>Electronics & Communication</option>
+                                <option>Electrical Engineering</option>
+                                <option>Mechanical Engineering</option>
+                                <option>Chemical Engineering</option>
+                                <option>Civil Engineering</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Your Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg text-white font-medium hover:from-blue-700 hover:to-indigo-700 transition duration-300 transform hover:scale-105">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="fade-in" style="transition-delay: 0.6s;">
+                    <div class="bg-gray-700/50 backdrop-blur-md rounded-xl p-8 h-full">
+                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="text-blue-400 text-xl mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Address</h4>
+                                    <p class="text-gray-300">FutureTech University Campus, Tech Valley, Bangalore - 560001, India</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-purple-400 text-xl mr-4 mt-1">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Phone</h4>
+                                    <p class="text-gray-300">+91 80 1234 5678 (Admissions)</p>
+                                    <p class="text-gray-300">+91 80 9876 5432 (General)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-green-400 text-xl mr-4 mt-1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Email</h4>
+                                    <p class="text-gray-300">admissions@futuretech.edu</p>
+                                    <p class="text-gray-300">btech@futuretech.edu</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-yellow-400 text-xl mr-4 mt-1">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Working Hours</h4>
+                                    <p class="text-gray-300">Monday to Friday: 9:00 AM - 5:00 PM</p>
+                                    <p class="text-gray-300">Saturday: 9:00 AM - 1:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-4">Connect With Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 flex items-center justify-center bg-blue-600 hover:bg-blue-700 rounded-full text-white transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center bg-blue-400 hover:bg-blue-500 rounded-full text-white transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center bg-pink-600 hover:bg-pink-700 rounded-full text-white transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center bg-blue-700 hover:bg-blue-800 rounded-full text-white transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center bg-red-600 hover:bg-red-700 rounded-full text-white transition">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold gradient-text mb-4">FutureTech</h3>
+                    <p class="text-gray-400">Shaping the engineers of tomorrow with cutting-edge education and research opportunities.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-white transition">Courses</a></li>
+                        <li><a href="#fees" class="text-gray-400 hover:text-white transition">Fee Structure</a></li>
+                        <li><a href="#careers" class="text-gray-400 hover:text-white transition">Careers</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Programs</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Computer Science</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Electronics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Electrical</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Mechanical</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Civil</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to get updates on admissions, events, and more.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 bg-gray-800 text-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 FutureTech University. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 hover:bg-blue-700 rounded-full text-white flex items-center justify-center transition opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Scroll animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+        
+        // Trigger animations on load
+        document.addEventListener('DOMContentLoaded', () => {
+            fadeInOnScroll();
+        });
+    </script>
+</body>
+</html>
