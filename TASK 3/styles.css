@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+}
+
+.calculator {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 400px;
+    overflow: hidden;
+}
+
+.display {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    text-align: right;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.previous-operand {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.5rem;
+    min-height: 30px;
+}
+
+.current-operand {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 1px;
+}
+
+button {
+    border: none;
+    outline: none;
+    padding: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+button:active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(0.95);
+}
+
+.number {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.operator {
+    background: rgba(255, 255, 255, 0.05);
+    color: #00ff9d;
+}
+
+.equals {
+    background: linear-gradient(45deg, #00ff9d, #00b36b);
+    color: white;
+}
+
+.clear {
+    background: rgba(255, 59, 59, 0.8);
+    color: white;
+}
+
+.delete {
+    background: rgba(255, 165, 0, 0.8);
+    color: white;
+}
+
+.function {
+    background: rgba(0, 153, 255, 0.2);
+    color: #00ff9d;
+    font-size: 1rem;
+}
+
+.memory {
+    background: rgba(147, 112, 219, 0.2);
+    color: #b19cd9;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 480px) {
+    .calculator {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .buttons {
+        height: calc(100vh - 140px);
+    }
+
+    button {
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Button Press Animation */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+button:active {
+    animation: buttonPress 0.2s ease;
+}
+
+/* Glassmorphism Effect */
+.calculator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Display Glow Effect */
+.display::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    pointer-events: none;
+}
+
+/* Button Hover Glow */
+button:hover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+button:hover::before {
+    opacity: 1;
+}
